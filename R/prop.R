@@ -336,6 +336,11 @@ prop_type.data.frame <- function(data, prop) {
   vector_type(prop_value(prop, data))
 }
 
+#' @export
+prop_type.tbl_spark <- function(data, prop) {
+  vector_type(prop_value(prop, data))
+}
+
 # Continuous variables are not countable; categorical variables are.
 prop_countable <- function(data, prop) {
   countable_prop_type(prop_type(data, prop))
