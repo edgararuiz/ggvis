@@ -69,6 +69,14 @@ apply_props.data.frame <- function(data, props) {
 }
 
 #' @export
+apply_props.tbl_spark <- function(data, props) {
+  cols <- lapply(props, prop_value, data = data)
+  names(cols) <- vapply(props, prop_label, character(1))
+  quickdf(cols)
+}
+
+
+#' @export
 apply_props.grouped_df <- function(data, props) {
   dplyr::do(data, apply_props(., props))
 }
